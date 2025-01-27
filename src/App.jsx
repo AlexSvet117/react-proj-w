@@ -1,35 +1,31 @@
+import Post from "./components/Post";
 import { useState } from "react";
 
-function App() {
-
-  // Primitive data types
-  const [firstName, setFirstName] = useState('John Doe')
-  const [count, setCount] = useState(1)
-  const [isCoder, setIsCoder] = useState(true)
-
-  // Arrays
-  useState()
+export default function() {
 
 
+    const [posts, setPosts] = useState([
+        {id: 1, userName: "JohnDoe", imageUrl: "https://picsum.photos/200?random=1", likeCount: 28, caption: "Testing my cam"},
+        {id: 1, userName: "JDoe", imageUrl: "https://picsum.photos/200?random=2", likeCount: 22, caption: "Look at that"},
+        {id: 1, userName: "JohnD", imageUrl: "https://picsum.photos/200?random=3", likeCount: 19, caption: "Yo"}
+    ])
 
-  return (
-    
-    <>
-    <div className="container text-center my-5">
-      <h1>Primitive</h1>
-      <p>{firstName}</p>
-      <p>{count}</p>
-      <p>{isCoder ? "Coder" : "Not Coder"}</p>
-      <button className="btn btn-primary"
-      onClick={() => {
-        setFirstName("John Doe New")
-        setCount(count+1)
-        setIsCoder(!isCoder)
-      }}>Update</button>
-    </div>
-     
-    </>
-  );
+
+    return (
+        <>
+        <div className="container text-center mt-5">
+            <h1 className="mb-3">My Feed</h1>
+
+            <div className="container">
+                {posts && (
+                    posts.map(post => {
+                        return (
+                            <Post post ={post}/>
+                        )
+                    })
+                )}
+            </div>
+        </div>
+        </>
+    )
 }
-
-export default App;
